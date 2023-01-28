@@ -1,11 +1,13 @@
 import React from "react";
 import "../../Styles/header.css"
+import { useNavigate } from 'react-router-dom';
 
 
 function Header() {
-
+    const navigate = useNavigate();
     const logout = () => {
         localStorage.clear();
+        navigate('/')
         window.location.reload();
     }
 

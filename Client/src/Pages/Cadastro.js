@@ -3,18 +3,20 @@ import Img from "../Assets/result.svg"
 import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const loca_api = "http://localhost:8080"
 const remote_api = "http://techyforsupport-env.eba-y3nm7sqv.ap-northeast-1.elasticbeanstalk.com:8080"
 
 function Cadastro({ logado = false }) {
+    const navigate = useNavigate();
     const handleRegister = (values) => {
         Axios.post(loca_api+"/register", {
             email: values.email,
             password: values.password,
         }).then((response) => {
             alert(response.data.msg);
+            navigate('/')
             window.location.reload();
         });
     };

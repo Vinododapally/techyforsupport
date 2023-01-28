@@ -5,7 +5,7 @@ import Header from "../Components/header/header"
 import Grafico from "../Components/grafico/Grafico";
 
 
-function HomePage() {
+function HomePage({logado=true}) {
 
 
     /* API Moedas*/
@@ -59,6 +59,7 @@ function HomePage() {
         <div className="App">
             <div className='content'>
                 <Header />
+               
                 <div class="animated fadeIn">
                     <div class="row">
                         <div class="col-lg-3 col-md-6">

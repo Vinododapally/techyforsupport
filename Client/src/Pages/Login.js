@@ -3,12 +3,13 @@ import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
 import Img from "../Assets/result.svg"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const loca_api = "http://localhost:8080"
 const remote_api = "http://techyforsupport-env.eba-y3nm7sqv.ap-northeast-1.elasticbeanstalk.com:8080"
 
 function Login({logado=false}) {
+  const navigate = useNavigate();
   const handleLogin = (values) => {
     Axios.post(loca_api+"/login", {
       email: values.email,
@@ -17,6 +18,7 @@ function Login({logado=false}) {
       const page = response.data;
       if (page === true) {
         localStorage.setItem('@user', JSON.stringify(response.config.data));
+        navigate('/dashboard')
         window.location.reload();
       } else {
         alert(response.data.msg);
@@ -24,6 +26,15 @@ function Login({logado=false}) {
 
     });
   };
+
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     if (logado === true) {
+//         navigate("/login")
+//     }
+// }, [logado, navigate]);
+  
 
   const handleRegister = (values) => {
     Axios.post(loca_api+"/register", {

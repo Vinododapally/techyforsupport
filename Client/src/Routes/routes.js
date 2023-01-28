@@ -11,7 +11,7 @@ const Rotas = () => {
     return (
         <BrowserRouter>
             <Routes>
-                {logado && <Route path="/" exact element={<Dashboard />} />}
+                {logado && <Route path="/dashboard" exact element={<Dashboard logado={logado}/>} />}
                 {!logado && <Route path="/" element={<Login logado={logado} />} />}
                 {!logado && <Route path="/register" element={<Cadastro logado={logado} />} />}
             </Routes>
