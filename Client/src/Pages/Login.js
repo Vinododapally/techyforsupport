@@ -11,7 +11,7 @@ const remote_api = "http://techyforsupport-env.eba-y3nm7sqv.ap-northeast-1.elast
 function Login({logado=false}) {
   const navigate = useNavigate();
   const handleLogin = (values) => {
-    Axios.post(loca_api+"/login", {
+    Axios.post(remote_api+"/login", {
       email: values.email,
       password: values.password,
     }).then((response) => {
@@ -27,17 +27,9 @@ function Login({logado=false}) {
     });
   };
 
-//   const navigate = useNavigate();
-
-//   useEffect(() => {
-//     if (logado === true) {
-//         navigate("/login")
-//     }
-// }, [logado, navigate]);
   
-
   const handleRegister = (values) => {
-    Axios.post(loca_api+"/register", {
+    Axios.post(remote_api+"/register", {
       email: values.email,
       password: values.password,
     }).then((response) => {
@@ -81,15 +73,11 @@ function Login({logado=false}) {
       <div className="right-login">
         <div className="card-login">
           <div className="user-links">
-            {/* <div className="user-link-home">
-              {!logado && <Link to="/">Home</Link>}
-            </div> */}
-
             <div className="user-link-cad">
-              {!logado && <Link to="/register"> Dont have one? Register</Link>}
+              {!logado && <Link to="/register"> Don't have one? Register</Link>}
             </div>
           </div>
-          <h1>Sign in</h1>
+          <h1>Techy Team</h1>
           <Formik
             initialValues={{}}
             onSubmit={handleLogin}

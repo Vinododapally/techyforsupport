@@ -7,14 +7,14 @@ const saltRounds = 10;
 
 {/* mysql db connection  */}
 
-const db1 = mysql.createConnection({
+const db = mysql.createPool({
   host: "shirngarjewellers.cseppedlnvb8.ap-northeast-1.rds.amazonaws.com",
   user: "Vinod",
   password: "vinododapally",
   database: "techyforsupport",
 });
 
-const db = mysql.createConnection({
+const db1 = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "Vinod@0479",

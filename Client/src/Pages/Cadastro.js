@@ -11,7 +11,7 @@ const remote_api = "http://techyforsupport-env.eba-y3nm7sqv.ap-northeast-1.elast
 function Cadastro({ logado = false }) {
     const navigate = useNavigate();
     const handleRegister = (values) => {
-        Axios.post(loca_api+"/register", {
+        Axios.post(remote_api+"/register", {
             email: values.email,
             password: values.password,
         }).then((response) => {
@@ -48,12 +48,8 @@ function Cadastro({ logado = false }) {
                         <div className="user-link-home">
                             {!logado && <Link to="/">Already have one? Login</Link>}
                         </div>
-
-                        {/* <div className="user-link-cad">
-                            {!logado && <Link to="/cadastro">Register</Link>}
-                        </div> */}
                     </div>
-                    <h1>Sign up</h1>
+                    <h1>Techy Team</h1>
                     <Formik
                         initialValues={{}}
                         onSubmit={handleRegister}
@@ -62,9 +58,7 @@ function Cadastro({ logado = false }) {
                         <Form className="login-form">
                             <div className="form-group">
                                 <label form="email">Email</label>
-
                                 <Field name="email" type='email' className="form-field" placeholder="Email" />
-
                                 <ErrorMessage
                                     component="span"
                                     name="email"

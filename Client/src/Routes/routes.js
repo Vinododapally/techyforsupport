@@ -4,7 +4,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Login from "../Pages/Login"
 import Dashboard from "../Pages/Dashboard"
 import Cadastro from "../Pages/Cadastro";
-
+import Services from "../Pages/Services";
+import Projects from "../Pages/Projects";
 const logado = localStorage.getItem('@user');
 
 const Rotas = () => {
@@ -12,6 +13,8 @@ const Rotas = () => {
         <BrowserRouter>
             <Routes>
                 {logado && <Route path="/dashboard" exact element={<Dashboard logado={logado}/>} />}
+                {logado && <Route path="/services" exact element={<Services logado={logado}/>} />}
+                {logado && <Route path="/projects" exact element={<Projects logado={logado}/>} />}
                 {!logado && <Route path="/" element={<Login logado={logado} />} />}
                 {!logado && <Route path="/register" element={<Cadastro logado={logado} />} />}
             </Routes>
