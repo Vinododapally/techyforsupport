@@ -1,8 +1,6 @@
 import React from "react";
 import '../Styles/dashboard.css';
-import { FaRegChartBar, FaEuroSign, FaDollarSign, FaBitcoin } from "react-icons/fa";
 import Header from "../Components/header/header"
-import Grafico from "../Components/grafico/Grafico";
 import Img from "../Assets/program.jpeg"
 import ImageShadow from 'react-image-shadow';
 import Sidenav from "../Components/Sidenav";

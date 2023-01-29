@@ -11,7 +11,7 @@ const remote_api = "http://techyforsupport-env.eba-y3nm7sqv.ap-northeast-1.elast
 function Login({logado=false}) {
   const navigate = useNavigate();
   const handleLogin = (values) => {
-    Axios.post(remote_api+"/login", {
+    Axios.post(loca_api+"/login", {
       email: values.email,
       password: values.password,
     }).then((response) => {
@@ -27,17 +27,6 @@ function Login({logado=false}) {
     });
   };
 
-  
-  const handleRegister = (values) => {
-    Axios.post(remote_api+"/register", {
-      email: values.email,
-      password: values.password,
-    }).then((response) => {
-      alert(response.data.msg);
-      console.log(response);
-    });
-  };
-
   const validationsLogin = yup.object().shape({
     email: yup
       .string()
@@ -47,21 +36,6 @@ function Login({logado=false}) {
       .string()
       .min(8, "password must be 8 characters atleast")
       .required("please enter password"),
-  });
-
-  const validationsRegister = yup.object().shape({
-    email: yup
-      .string()
-      .email("email invalid")
-      .required("please enter email Id"),
-    password: yup
-      .string()
-      .min(8, "password must be 8 characters atleast")
-      .required("please enter password"),
-    confirmation: yup
-      .string()
-      .oneOf([yup.ref("password"), null], "password does not match")
-      .required("please enter confirm password"),
   });
 
   return (

@@ -11,7 +11,7 @@ const remote_api = "http://techyforsupport-env.eba-y3nm7sqv.ap-northeast-1.elast
 function Cadastro({ logado = false }) {
     const navigate = useNavigate();
     const handleRegister = (values) => {
-        Axios.post(remote_api+"/register", {
+        Axios.post(loca_api+"/register", {
             email: values.email,
             password: values.password,
         }).then((response) => {

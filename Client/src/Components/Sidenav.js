@@ -5,12 +5,11 @@ ProSidebar,
 Menu,
 MenuItem,
 SidebarHeader,
-SidebarFooter,
 SidebarContent,
 } from "react-pro-sidebar";
 //icons from react icons
 import { FaList, FaRegHeart } from "react-icons/fa";
-import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
+import { FiHome, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 import { RiPencilLine } from "react-icons/ri";
 import { BiCog } from "react-icons/bi";
 import { SiApacheairflow } from "react-icons/si";

@@ -40,9 +40,13 @@ function Header() {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link eventKey={2} onClick={logout}>
-              Logout
-            </Nav.Link>
+            <NavDropdown title="Profile" id="collasible-nav-dropdown">
+              <NavDropdown.Item href="/changepassword">Change Password</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item eventKey={2} onClick={logout}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
