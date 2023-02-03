@@ -4,26 +4,43 @@ import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
 import Img from "../Assets/result.svg"
 import { Link, useNavigate } from 'react-router-dom';
+import React from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import commonConfig from "../config/commonConfig.json";
 
-const loca_api = "http://localhost:8080"
-const remote_api = "http://techyforsupport-env.eba-y3nm7sqv.ap-northeast-1.elasticbeanstalk.com:8080"
-
+toast.configure();
 function ChangePassword() {
+
+  const notifyS = (msg) => {
+    toast.success(msg, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000
+    });
+  };
+
+  const notifyE = (msg) => {
+    toast.error(msg, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000
+    });
+  };
+
   const navigate = useNavigate();
  
   const handleRest = (values) => {
     const  user = JSON.parse(localStorage.getItem('@user'));
-
-    Axios.post(loca_api+"/changepassword", {
-      email: JSON.stringify(user.email),
+    const userObject = JSON.parse(user);
+    Axios.post(commonConfig.SERVER_URL+"/changepassword", {
+      email: userObject.email,
       currentPassword: values.currentPassword,
       newPassword: values.newPassword,
     }).then((response) => {
-      if (response.data.msg) {
+      if (response) {
+        notifyS(response.data.msg);
         navigate('/dashboard')
-        window.location.reload();
       } else {
-        alert("Technical error")
+       notifyE(response.data.msg);
       }
 
     });

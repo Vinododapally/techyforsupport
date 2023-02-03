@@ -4,20 +4,40 @@ import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import commonConfig from "../config/commonConfig.json";
 
-const loca_api = "http://localhost:8080"
-const remote_api = "http://techyforsupport-env.eba-y3nm7sqv.ap-northeast-1.elasticbeanstalk.com:8080"
-
+toast.configure();
 function Cadastro({ logado = false }) {
+
+    const notifyS = (msg) => {
+        toast.success(msg, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 2000
+        });
+      };
+    
+      const notifyE = (msg) => {
+        toast.error(msg, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 2000
+        });
+      };
+
     const navigate = useNavigate();
     const handleRegister = (values) => {
-        Axios.post(loca_api+"/register", {
+        Axios.post(commonConfig.SERVER_URL+"/register", {
             email: values.email,
             password: values.password,
         }).then((response) => {
-            alert(response.data.msg);
+            if(response){
+            notifyS(response.data.msg);
             navigate('/')
-            window.location.reload();
+            //window.location.reload();
+            }else{
+                notifyE(response.data.msg);
+            }
         });
     };
 

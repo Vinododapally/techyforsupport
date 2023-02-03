@@ -4,24 +4,40 @@ import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
 import Img from "../Assets/result.svg"
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import commonConfig from "../config/commonConfig.json";
 
-const loca_api = "http://localhost:8080"
-const remote_api = "http://techyforsupport-env.eba-y3nm7sqv.ap-northeast-1.elasticbeanstalk.com:8080"
-
+toast.configure();
 function Login({logado=false}) {
+  const notifyS = (msg) => {
+    toast.success(msg, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000
+    });
+  };
+
+  const notifyE = (msg) => {
+    toast.error(msg, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000
+    });
+  };
+  
   const navigate = useNavigate();
   const handleLogin = (values) => {
-    Axios.post(loca_api+"/login", {
+    Axios.post(commonConfig.SERVER_URL+"/login", {
       email: values.email,
       password: values.password,
     }).then((response) => {
       const page = response.data;
       if (page === true) {
         localStorage.setItem('@user', JSON.stringify(response.config.data));
+        notifyS("Login successfull enjoy now");
         navigate('/dashboard')
         window.location.reload();
       } else {
-        alert(response.data.msg);
+        notifyE(response.data.msg);
       }
 
     });
@@ -60,9 +76,7 @@ function Login({logado=false}) {
             <Form className="login-form">
               <div className="form-group">
                 <label form="email">Email</label>
-
                 <Field name="email" type='email' className="form-field" placeholder="Email" />
-
                 <ErrorMessage
                   component="span"
                   name="email"
@@ -75,7 +89,6 @@ function Login({logado=false}) {
               <div className="form-group">
                 <label form="email">Password</label>
                 <Field name="password" type='password' className="form-field" placeholder="Password" autoComplete="on"/>
-
                 <ErrorMessage
                   component="span"
                   name="password"

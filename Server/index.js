@@ -79,12 +79,9 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/changepassword", (req, res) => {
-  const email = "odapallyvinod@gmail.com";
+  const email = req.body.email;
   const currPassword = req.body.currentPassword;
   const password = req.body.newPassword;
-  console.log("current password=="+email)
-console.log("current password=="+currPassword)
-console.log("New password=="+password)
 bcrypt.hash(password, saltRounds, (err, hash) => {
   console.log(hash)
   db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
@@ -97,8 +94,6 @@ bcrypt.hash(password, saltRounds, (err, hash) => {
           res.send(error);
         }
         if (response == true) {
-          console.log('=c=='+password)
-          console.log('==='+result[0].password)
             db.query(
               "Update users set password=? where email=?",
               [hash, email],
