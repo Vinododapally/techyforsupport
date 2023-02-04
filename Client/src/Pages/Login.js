@@ -13,7 +13,7 @@ function Login({logado=false}) {
   const notifyS = (msg) => {
     toast.success(msg, {
       position: toast.POSITION.TOP_RIGHT,
-      autoClose: 2000
+      autoClose: 3000
     });
   };
 
@@ -30,9 +30,9 @@ function Login({logado=false}) {
       email: values.email,
       password: values.password,
     }).then((response) => {
-      const page = response.data;
-      if (page === true) {
-        localStorage.setItem('@user', JSON.stringify(response.config.data));
+      if (response) {
+        localStorage.setItem('@user', JSON.stringify(response.data[0]));
+        console.log('======='+JSON.stringify(response.data[0]));
         notifyS("Login successfull enjoy now");
         navigate('/dashboard')
         window.location.reload();

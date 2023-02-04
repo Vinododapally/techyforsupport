@@ -73,7 +73,7 @@ const config = {
                 <Header />
                 <Sidenav />
                 <ChatBot headerTitle="Techy Bot"
-                speechSynthesis={{ enable: true, lang: 'en' }} 
+                speechSynthesis={{ enable: false, lang: 'en' }} 
                 steps={steps} botAvatar= {techbot} userAvatar= {useravtar} {...config}/>
                 <br/>
                  <ImageShadow  src={Img}  height={400} width= {800}  className="rounded mx-auto d-block"/>&nbsp;

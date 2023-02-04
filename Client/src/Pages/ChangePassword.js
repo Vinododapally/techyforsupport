@@ -30,9 +30,8 @@ function ChangePassword() {
  
   const handleRest = (values) => {
     const  user = JSON.parse(localStorage.getItem('@user'));
-    const userObject = JSON.parse(user);
     Axios.post(commonConfig.SERVER_URL+"/changepassword", {
-      email: userObject.email,
+      email: user.email,
       currentPassword: values.currentPassword,
       newPassword: values.newPassword,
     }).then((response) => {

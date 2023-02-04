@@ -14,6 +14,7 @@ import { RiPencilLine } from "react-icons/ri";
 import { BiCog } from "react-icons/bi";
 import { SiApacheairflow } from "react-icons/si";
 import { GiAbstract050 } from "react-icons/gi";
+import { useNavigate } from 'react-router-dom';
 //sidebar css from react-pro-sidebar module
 import "react-pro-sidebar/dist/css/styles.css";
 import "./Sidenav.css";
@@ -25,6 +26,11 @@ const menuIconClick = () => {
 //condition checking to change state from true to false and vice versa
 menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
 };
+
+const navigate = useNavigate();
+    const goto = () => {
+        navigate('/author')
+    }
 return (
 <>
 <div id="header">
@@ -51,7 +57,7 @@ Home
 </MenuItem>
 <MenuItem icon={<FaList />}>Category</MenuItem>
 <MenuItem icon={<FaRegHeart />}>Favourite</MenuItem>
-<MenuItem icon={<RiPencilLine />}>Author</MenuItem>
+<MenuItem icon={<RiPencilLine />} onClick={goto}>Author</MenuItem>
 <MenuItem icon={<BiCog />}>Settings</MenuItem>
 </Menu>
 </SidebarContent>
