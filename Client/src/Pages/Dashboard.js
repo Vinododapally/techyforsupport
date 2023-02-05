@@ -7,8 +7,14 @@ import techbot from "../Assets/techbot.jpg"
 import ImageShadow from 'react-image-shadow';
 import Sidenav from "../Components/Sidenav";
 import ChatBot from 'react-simple-chatbot';
+import {Navigate } from 'react-router-dom';
 
 function HomePage() {
+
+    const  user = JSON.parse(localStorage.getItem('@user'));
+    if (user===null) {
+        return <Navigate  to={{ pathname: '/', }}></Navigate >
+    }
 
     const steps = [
         {

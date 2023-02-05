@@ -9,9 +9,17 @@ import "react-toastify/dist/ReactToastify.css";
 import commonConfig from "../config/commonConfig.json";
 import {useNavigate } from 'react-router-dom';
 import Avatar from 'react-avatar';
+import useravtar from "../Assets/useravtar.jpg"
+import {Navigate,Route } from 'react-router-dom';
 
 toast.configure();
 function UploadProfile() {
+
+  // const  userObj = JSON.parse(localStorage.getItem('@user'));
+  // if (userObj===null) {
+  //      navigate('/')
+  // }
+  
     const navigate = useNavigate();
     const notifyS = (msg) => {
         toast.success(msg, {
@@ -30,7 +38,8 @@ function UploadProfile() {
       const [file, setFile] = useState();
       const [fileName, setFileName] = useState("");
       const  user = JSON.parse(localStorage.getItem('@user'));
-      const [preview, setPreview] = useState(user.file_path)
+      const path = user.file_path?user.file_path:useravtar;
+      const [preview, setPreview] = useState(path)
  
       const saveFile = (e) => {
         setFile(e.target.files[0]);

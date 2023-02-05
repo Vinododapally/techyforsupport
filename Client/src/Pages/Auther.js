@@ -4,9 +4,14 @@ import Header from "../Components/header/header"
 import Img from "../Assets/author.jpg"
 import Sidenav from "../Components/Sidenav";
 import Avatar from 'react-avatar';
+import {Navigate } from 'react-router-dom';
 
 function Auther() {
 
+    const  user = JSON.parse(localStorage.getItem('@user'));
+    if (user===null) {
+        return <Navigate  to={{ pathname: '/', }}></Navigate >
+    }
 
     return (
         <div className="App">

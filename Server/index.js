@@ -89,7 +89,7 @@ app.post("/login", (req, res) => {
         if (error) {
           res.send(error);
         }
-        if (response == true) {
+        if (result) {
           res.send(result)
         } else {
           res.send({ msg: "Invalid Password" });

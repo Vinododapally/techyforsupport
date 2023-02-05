@@ -8,9 +8,15 @@ import React from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import commonConfig from "../config/commonConfig.json";
+import {Navigate } from 'react-router-dom';
 
 toast.configure();
 function ChangePassword() {
+
+  const  user = JSON.parse(localStorage.getItem('@user'));
+  if (user===null) {
+      return <Navigate  to={{ pathname: '/', }}></Navigate >
+  }
 
   const notifyS = (msg) => {
     toast.success(msg, {

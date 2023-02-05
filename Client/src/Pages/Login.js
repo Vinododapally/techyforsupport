@@ -32,7 +32,6 @@ function Login({logado=false}) {
     }).then((response) => {
       if (response) {
         localStorage.setItem('@user', JSON.stringify(response.data[0]));
-        console.log('======='+JSON.stringify(response.data[0]));
         notifyS("Login successfull enjoy now");
         navigate('/dashboard')
         window.location.reload();

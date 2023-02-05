@@ -8,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import {NavDropdown} from 'react-bootstrap';
 import ImageShadow from 'react-image-shadow';
 import Avatar from 'react-avatar';
+import useravtar from "./useravtar.jpg"
 
 function Header() {
     const navigate = useNavigate();
@@ -16,9 +17,8 @@ function Header() {
         navigate('/')
         window.location.reload();
     }
-
-       const  user = JSON.parse(localStorage.getItem('@user'));
-       const filepath=user.file_path
+      const  user = JSON.parse(localStorage.getItem('@user'));
+      const filepath = user.file_path?user.file_path: useravtar;
 
     return (
         <div className="header">
@@ -45,7 +45,7 @@ function Header() {
             </NavDropdown>
           </Nav>
           <Nav>
-          <Avatar alt="Remy Sharp" src={filepath} round={true} size={40}/>
+          <Avatar  src={filepath} round={true} size={40}/>
             <NavDropdown title="Profile" id="collasible-nav-dropdown" >
             <NavDropdown.Item href="/uploadprofile">Edit Profile</NavDropdown.Item>
               <NavDropdown.Item href="/changepassword">Change Password</NavDropdown.Item>
